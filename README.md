@@ -1,14 +1,16 @@
-# culiboot
+# Culi's prot0type playground v2
 
-Culi's goto bootstrap web project using create-react-app, styled-components, and react-router-dom.
+See original at [dontplaywithculi.netlify.app](https://dontplaywithculi.netlify.app/) ([repo](https://github.com/tif-calin/react-play))
 
-Borrows from normalize.css, reset.css, open-props, open-color, and Josh Comeau's [Shadow Palette Generator](https://www.joshwcomeau.com/css/introducing-shadow-palette-generator/)
+```js
+$=_=>`$=${$};$()`;$()
+```
 
 ## Setup
 ```
-git clone git@github.com:tif-calin/culiboot.git
+git clone git@github.com:tif-calin/play.culi.page.git
 cd culiboot
 cp .env.local.example .env.local
-npm i
-npm start
+yarn install
+yarn start
 ```
