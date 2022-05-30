@@ -92,12 +92,16 @@ const ProjectCompostGuide = styled.li`
 interface HomePageProps {};
 
 const blah = [
+  'mockups',
   'prototypes',
   'side projects',
   'passion projects',
   'personal projects',
+  'proofs of concept',
   'hobby projects',
-  'experiments, ',
+  'experiments',
+  'blueprints',
+  'interests, '
 ];
 
 const HomePage = (_: HomePageProps): React.ReactElement => {

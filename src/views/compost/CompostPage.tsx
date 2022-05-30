@@ -17,8 +17,14 @@ const SplashText = styled.p`
   line-height: 1;
   width: fit-content;
 
-  & :not(:first-child) {
+  & > :not(:first-child) {
     font-weight: 600;
+  }
+
+  & > :last-child {
+    font-size: 1.25rem;
+    font-weight: 400;
+    text-align: right;
   }
 `;
 
@@ -37,6 +43,7 @@ const CompostPage = (_: CompostPageProps): React.ReactElement => {
       <SplashText>
         <span>Unless someone like you cares an awful lot; </span>
         <span>Nothing is going to get better; it's not.</span>
+        <span>—The Lorax</span>
       </SplashText>
     </Container>
   );
