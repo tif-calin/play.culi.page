@@ -114,20 +114,20 @@ const Quickstart = styled.section`
   }
 `;
 
-const colors = [
-  'pink',
-  'red',
-  'orange',
-  'yellow',
-  'lime',
-  'green',
-  'teal',
-  'cyan',
-  'blue',
-  'indigo',
-  'violet',
-  'grape',
-];
+// const colors = [
+//   'pink',
+//   'red',
+//   'orange',
+//   'yellow',
+//   'lime',
+//   'green',
+//   'teal',
+//   'cyan',
+//   'blue',
+//   'indigo',
+//   'violet',
+//   'grape',
+// ];
 
 const CompostPage = (_: CompostPageProps): React.ReactElement => {
   React.useEffect(() => {
