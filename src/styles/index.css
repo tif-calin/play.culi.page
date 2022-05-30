@@ -6,6 +6,10 @@
   --font-sans: "Josefin Sans", sans-serif;
 }
 
+html {
+  --color-bg: var(--oc-white);
+}
+
 html,
 body {
   padding: 0;

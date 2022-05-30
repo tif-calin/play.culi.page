@@ -1,23 +1,45 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
-import Layout from './components/layout';
 import './styles/index.css';
+import Layout from './components/layout';
 import HomePage from './views/home';
 
-const page2repo: Record<string, string> = {
-  // maps from page path to repo path
-  'home': 'src/views/home',
+const CompostPage = React.lazy(() => import('./views/compost'));
+
+const page2repo: Record<string, { breadcrumbs?: string[], path?: string }> = {
+  'home': {
+    path: 'src/views/home'
+  },
+  'compost': {
+    path: 'src/views/compost',
+    // breadcrumbs: ['compost']
+  }
 };
 
 const App = () => {
-  const href = window?.location?.href.split('/').slice(3).join('/');
+  const [href, setHref] = React.useState('');
+  const config = page2repo[href];
+
+  React.useEffect(() => {
+    const listener = () => {
+      setHref(window?.location?.href.split('/').slice(3).join('/'));
+      console.log(window?.location?.href);
+    };
+    window.addEventListener('pageshow', listener);
+    return () => window.removeEventListener('pageshow', listener);
+  }, []);
 
   return (
     <Router>
-      <Layout path={page2repo[href]}>
+      <Layout breadcrumbs={config?.breadcrumbs} path={config?.path}>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/compost" element={(
+            <React.Suspense fallback={<>loading...</>}>
+              <CompostPage />
+            </React.Suspense>
+          )} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Layout>

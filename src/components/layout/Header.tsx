@@ -12,7 +12,6 @@ const StyledHeader = styled.header`
   margin-top: calc(var(--gutter) / 2);
 
   & .site-title {
-    width: 100%;
     font-weight: 800;
     filter: saturate(0.55) brightness(0.25);
     transition: all 2s cubic-bezier(0, 0.9, 0.8, 0.99);
@@ -21,18 +20,38 @@ const StyledHeader = styled.header`
       filter: saturate(1) brightness(1) hue-rotate(1440deg);
     }
   }
+
+  & .breadcrumb {
+    &::before {
+      content: '\\003E';
+      margin: 0 0.25rem;
+    }
+  }
+
+  & > span > :last-child {
+    width: 100%;
+  }
 `;
 
-interface Props {};
+interface HeaderProps {
+  breadcrumbs?: string[];
+};
 
-const Header: React.FC<Props> = () => {
+const Header = ({ breadcrumbs }: HeaderProps): React.ReactElement => {
   return (
     <StyledHeader>
-      {SITE && (
-        <Link to="/">
-          <span className="site-title"><RainbowText text={SITE} /></span>
-        </Link>
-      )}
+      <span>
+        {SITE && (
+          <Link to="/">
+            <span className="site-title">
+              <RainbowText text={SITE} />
+            </span>
+          </Link>
+        )}
+        {breadcrumbs && breadcrumbs.map(crumb => (
+          <span key={crumb} className="breadcrumb">{crumb}</span>
+        ))}
+      </span>
     </StyledHeader>
   );
 };

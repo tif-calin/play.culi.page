@@ -34,3 +34,6 @@ A list of tools/toys I wanna play with.
    - [html.energy](https://html.energy/index.html)
    - [handmade.network](https://handmade.network/manifesto)
    - [whimsical.club](https://whimsical.club/about/)
+
+Project ideas
+ - when to bring cami inside

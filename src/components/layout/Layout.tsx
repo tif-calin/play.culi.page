@@ -13,6 +13,8 @@ const StyledLayout = styled.div`
   width: 100vw;
   overflow-y: overlay;
 
+  background-color: var(--color-bg);
+
   & > :is(header, main, footer) {
     width: 100%;
   
@@ -46,14 +48,15 @@ const StyledLayout = styled.div`
 `;
 
 interface Props {
+  breadcrumbs?: string[];
   path?: string;
   children: React.ReactNode;
 };
 
-const Layout = ({ path, children }: Props): React.ReactElement => {
+const Layout = ({ breadcrumbs, path, children }: Props): React.ReactElement => {
   return (
     <StyledLayout>
-      <Header />
+      <Header breadcrumbs={breadcrumbs} />
       <main>
         {children}
       </main>

@@ -89,7 +89,7 @@ const ProjectCompostGuide = styled.li`
   }
 `;
 
-interface Props {};
+interface HomePageProps {};
 
 const blah = [
   'prototypes',
@@ -100,7 +100,7 @@ const blah = [
   'experiments, ',
 ];
 
-const HomePage = (_: Props): React.ReactElement => {
+const HomePage = (_: HomePageProps): React.ReactElement => {
   const [isBannerPaused, toggleIsBannerPaused] = React.useReducer(b => !b, false);
 
   return (
@@ -120,7 +120,7 @@ const HomePage = (_: Props): React.ReactElement => {
                   /compost
                 </Link>
                 <p>
-                  A guide to all things composting. Including Berkeley method, FAQs, compost politics, and printables!
+                  A guide to all things composting. Including the Berkeley method, FAQs, compost politics, a nitrogen:carbon reference table, printables, and more!
                 </p>
               </ProjectCompostGuide>
             </ul>
