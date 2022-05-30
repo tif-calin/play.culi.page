@@ -78,13 +78,13 @@ const ProjectsDisplay = styled.section<{
 
 const ProjectCompostGuide = styled.li`
   &.project {
-    background-color: var(--oc-yellow-0);
+    background-color: var(--oc-orange-0);
     overflow: auto;
 
     & > a {
       text-decoration: underline;
-      text-decoration-color: var(--oc-yellow-6);
-      border-bottom: 1px solid var(--oc-yellow-5);
+      text-decoration-color: var(--oc-orange-6);
+      border-bottom: 1px solid var(--oc-orange-5);
     }
   }
 `;
