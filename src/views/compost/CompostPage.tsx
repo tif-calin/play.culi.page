@@ -179,10 +179,10 @@ const CompostPage = (_: CompostPageProps): React.ReactElement => {
               Shred/mulch/blend the organic matter (browns and greens, but browns especially).
             </li>
             <li>
-              Pay attention to the ingredients and calculate your overall C:N ratio and try to get it to around 25:1. Additionally, look out for any ingredients that might make the pH too acidic or alkaline. Also make sure there are good sources of specific minerals. Add special ingredients as needed.
+              Pay attention to the ingredients and calculate your overall <abbr title="carbon to nitrogen">C:N</abbr> ratio and try to get it to around 25:1. Additionally, look out for any ingredients that might make the pH too acidic or alkaline. Also make sure there are good sources of specific minerals. Add special ingredients as needed.
             </li>
             <li>
-              Make a heap of compost that's about a 1.5m cube. You can add bokashi or other EMOs to help ferment. You should at least add some healthy soil to introduce certain microbes. You can also make sure worms are in the mix to help out.
+              Make a heap of compost that's about a 1.5m cube. You can add bokashi or other <abbr title="effective microorganisms">EMO</abbr>s to help ferment. You should at least add some healthy soil to introduce certain microbes. You can also make sure worms are in the mix to help out.
             </li>
             <li>
               Keep it in the sun, but water it to make sure it doesn't dry out. After 4 days, take the outsides of the heap and put it in another heap. Then take the insides and make a wall around the outside bits with the inside bits.
