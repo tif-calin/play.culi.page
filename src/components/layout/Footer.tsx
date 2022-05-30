@@ -4,7 +4,7 @@ import ExternalLink from '../ExternalLink';
 
 const REPO_URL = 
   process.env.REACT_APP_REPO_URL
-  || 'https://github.com/tif-calin/culiboot'
+  || 'https://github.com/tif-calin/play.culi.page'
 ;
 
 const StyledFooter = styled.footer`
