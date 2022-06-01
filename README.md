@@ -34,6 +34,18 @@ A list of tools/toys I wanna play with.
    - [html.energy](https://html.energy/index.html)
    - [handmade.network](https://handmade.network/manifesto)
    - [whimsical.club](https://whimsical.club/about/)
+ - code gimmicks: 
+   - [ninja code](https://javascript.info/ninja-code)
+   - konami code in js
+
+Tools that would require a totally new project template
+ - React offshoots: [preact](https://preactjs.com/), [inferno](https://www.infernojs.org/), [solid](https://www.solidjs.com/)
+ - Alternative frameworks: svelte (see [svelte.recipes](https://svelte.recipes/))
+ - A stratight up new language: elm
+ - Node alternatives: deno
 
 Project ideas
  - when to bring cami inside
+ - gameoflife 
+   - with [sound](https://www.youtube.com/watch?v=WEbKCLNdoFg)
+   - as a [movable feast machine](https://www.youtube.com/watch?v=W7HRay9RPNg)

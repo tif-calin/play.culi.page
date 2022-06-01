@@ -1,13 +1,87 @@
 import React from 'react';
 import styled from 'styled-components';
+import ExternalLink from '../../components/ExternalLink';
+
+// https://en.wikipedia.org/wiki/User:Tr3ndyBEAR/composting
+// https://daily.jstor.org/a-history-of-human-waste-as-fertilizer/
+// https://oa.mg/work/10.1215/22011919-3614962
 
 interface CompostPageProps {};
 
+// const colors = [
+//   'pink',
+//   'red',
+//   'orange',
+//   'yellow',
+//   'lime',
+//   'green',
+//   'teal',
+//   'cyan',
+//   'blue',
+//   'indigo',
+//   'violet',
+//   'grape',
+// ];
+
+/*
+mycelium
+resisting reduction
+plant intelligence
+communities
+
+compost resources
+(maps)
+ - makesoil.org
+ - sharewaste.com
+ - findacomposter.com
+ - compostnow.org
+(wiki)
+ - appropedia
+
+Aeon.co
+https://aeon.co/essays/mushroom-foraging-is-deadly-why-am-i-doing-it
+https://aeon.co/ideas/lets-open-our-sealed-off-lives-to-semi-permeable-architecture
+https://aeon.co/essays/organisms-are-not-passive-recipients-of-evolutionary-forces
+https://aeon.co/essays/what-can-an-embodied-history-of-trees-teach-us-about-life
+https://aeon.co/essays/japanese-culture-conquered-the-human-fear-of-creepy-crawlies
+https://aeon.co/essays/what-can-we-learn-from-natures-experience-of-catastrophes
+https://aeon.co/essays/like-start-ups-most-intentional-communities-fail-why
+https://aeon.co/essays/any-garden-i-love-must-be-wild
+https://aeon.co/essays/i-was-a-thrifty-yankee-with-a-big-crush-on-the-american-west
+https://aeon.co/essays/beyond-the-animal-brain-plants-have-cognitive-capacities-too
+
+JoDS
+https://jods.mitpress.mit.edu/pub/issue4-ionat-maholo/release/1
+https://jods.mitpress.mit.edu/pub/enlightenment-to-entanglement/release/1
+
+Shareable
+https://www.shareable.net/community-composting-resources/
+
+Low Tech Mag
+https://solar.lowtechmagazine.com/2020/04/fruit-trenches-cultivating-subtropical-plants-in-freezing-temperatures.html
+https://solar.lowtechmagazine.com/2021/03/urban-fish-ponds-low-tech-sewage-treatment-for-towns-and-cities.html
+https://solar.lowtechmagazine.com/2015/02/heating-people-not-spaces.html
+https://solar.lowtechmagazine.com/2017/02/vietnams-low-tech-fermentation-food-system-takes-advantage-of-decay.html
+https://solar.lowtechmagazine.com/2015/12/fruit-walls-urban-farming.html
+*/
+
 const Container = styled.div`
-  --cyan: var(--oc-cyan-4);
+  --pink: var(--oc-pink-4);
+  --red: var(--oc-red-4);
+  --orange: var(--oc-orange-4);
   --yellow: var(--oc-yellow-4);
+  --lime: var(--oc-lime-4);
+  --green: var(--oc-green-4);
+  --teal: var(--oc-teal-4);
+  --cyan: var(--oc-cyan-4);
+  --blue: var(--oc-blue-4);
+  --indigo: var(--oc-indigo-4);
+  --violet: var(--oc-violet-4);
+  --grape: var(--oc-grape-4);
   --black: var(--oc-black);
   --white: var(--oc-white);
+
+  --color-link: var(--oc-cyan-6);
 `;
 
 const SplashText = styled.p`
@@ -72,62 +146,119 @@ const SplashText = styled.p`
   }
 `;
 
-const QuickstartWrapper = styled.div`
+const CardWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-`;
+  gap: 3rem;
 
-const Quickstart = styled.section`
-  --bg-color: var(--white);
-  border: 0.25rem solid var(--black);
-  border-radius: 2px;
-  transform: rotate(3deg);
-  width: 20rem;
-
-  & > h2 {
-    background-color: var(--cyan);
-    border-bottom: 0.2rem solid var(--black);
-    padding: 0.25rem 0.5rem;
+  & * {
+    box-sizing: border-box;
   }
 
-  & > ol {
-    padding: 0.5rem;
-    padding-left: 2rem;
-    max-height: 20rem;
-    overflow-y: auto;   
-
-
+  & .card {
+    --bg-color: var(--white);
+    --border: 0.25rem solid var(--black);
     background-color: var(--bg-color);
+    border-top: var(--border);
+    border-left: var(--border);
+    border-radius: 2px;
+    box-sizing: border-box;
+    position: relative;
+    transition: transform 0.2s ease-in;
+    flex: 1;
+  
+    height: fit-content;
 
-    &:hover, &:focus, &:active {
-      background:
-        linear-gradient(#ffff, #ffff),
-        linear-gradient(#ffff, #ffff) 0 100%,
-        linear-gradient(#0000 0 25%, #0005 25% 75%, #0000 75%) 50% 0,
-        linear-gradient(#0000 0 25%, #0005 25% 75%, #0000 75%) 50% 100%
-      ;
-      background-size: 100% 1rem, 100% 1rem, 50% 0.5rem, 50% 0.5rem;
-      background-attachment: local, local, scroll, scroll;
+    &::before {
+      border: var(--border);
+      border-radius: 2px;
+      content: '';
+      position: absolute;
+      transition: transform 0.2s ease-in-out;
+      transform: translate3d(1rem, 1rem, 0);
+      z-index: -1;
+  
+      height: 100%;
+      width: 100%;
+    }
+
+    &:hover {
+      transform: rotate(0deg);
+      &::before {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    & > * {
+      border-right: var(--border);
+      border-bottom: var(--border);
+    }
+
+    & > h2 {
+      border-bottom: var(--border);
+      padding: 0.25rem 0.5rem;
+    }
+
+    & > :is(ol, ul) {
       background-color: var(--bg-color);
-      background-repeat: no-repeat;
+      border-bottom-right-radius: 2px;
+      height: 20rem;
+      max-height: 20rem;
+      overflow-y: auto;
+      padding: 0.5rem;
+      padding-left: 2rem;
+
+      &:hover, &:focus, &:active {
+        background:
+          linear-gradient(#ffff, #ffff),
+          linear-gradient(#ffff, #ffff) 0 100%,
+          linear-gradient(#0000 0 25%, #0005 25% 75%, #0000 75%) 50% 0,
+          linear-gradient(#0000 0 25%, #0005 25% 75%, #0000 75%) 50% 100%
+        ;
+        background-size: 100% 1rem, 100% 1rem, 50% 0.5rem, 50% 0.5rem;
+        background-attachment: local, local, scroll, scroll;
+        background-color: var(--bg-color);
+        background-repeat: no-repeat;
+      }
     }
   }
 `;
 
-// const colors = [
-//   'pink',
-//   'red',
-//   'orange',
-//   'yellow',
-//   'lime',
-//   'green',
-//   'teal',
-//   'cyan',
-//   'blue',
-//   'indigo',
-//   'violet',
-//   'grape',
-// ];
+const Quickstart = styled.aside`
+  transform: rotate(3deg);
+
+  &::before {
+    background: var(--red);
+  }
+
+  & > h2 {
+    background-color: var(--yellow);
+  }
+`;
+
+const Protips = styled.aside`
+  transform: rotate(-2deg);
+
+  &::before {
+    background: var(--indigo);
+  }
+
+  & > h2 {
+    background-color: var(--grape);
+  }
+`;
+
+const FurtherReadings = styled.aside`
+  transform: rotate(1deg);
+
+  &::before {
+    background: var(--green);
+  }
+
+  & > h2 {
+    background-color: var(--cyan);
+  }
+`;
 
 const CompostPage = (_: CompostPageProps): React.ReactElement => {
   React.useEffect(() => {
@@ -160,7 +291,7 @@ const CompostPage = (_: CompostPageProps): React.ReactElement => {
           <span>—The Lorax</span>
         </span>
       </SplashText>
-      <QuickstartWrapper>
+      <CardWrapper>
         {/* <svg className="balls" viewBox={`-50 0 ${colors.length * 100} 100`} height="50px" width="100%">
           {colors.map((color, i, arr) => (
             <circle
@@ -172,7 +303,7 @@ const CompostPage = (_: CompostPageProps): React.ReactElement => {
             />
           ))}
         </svg> */}
-        <Quickstart>
+        <Quickstart className="card">
           <h2>Quickstart</h2>
           <ol>
             <li>
@@ -192,7 +323,41 @@ const CompostPage = (_: CompostPageProps): React.ReactElement => {
             </li>
           </ol>
         </Quickstart>
-      </QuickstartWrapper>
+        <Protips className="card">
+          <h2>Protips</h2>
+          <ul>
+            <li>Stay in drugs</li>
+            <li>Eat your school</li>
+            <li>Don&apos;t do vegetables</li>
+          </ul>
+        </Protips>
+        <FurtherReadings className="card">
+          <h2>Further Readings</h2>
+          <ul>
+            <li>
+              <ExternalLink href="https://daily.jstor.org/a-history-of-human-waste-as-fertilizer/">A history of human waste as fertilizer</ExternalLink>
+            </li>
+            <li>
+              <ExternalLink href="https://oa.mg/work/10.1215/22011919-3614962">Compost politics: Experimenting with togetherness in vermicomposting</ExternalLink>
+            </li>
+            <li>
+              <ExternalLink href="https://aeon.co/essays/ours-is-the-waste-age-thats-the-key-to-tranforming-the-future">Ours is the waste age: that&apos;s the key to transforming the future</ExternalLink>
+            </li>
+            <li>
+              <ExternalLink href="https://www.youtube.com/watch?v=OS9uhASKyjA">Japan&apos;s town with no waste</ExternalLink>
+            </li>
+            <li>
+              <ExternalLink href="https://www.shareable.net/how-to-free-the-soil-by-depaving/">How to free the soil by depaving</ExternalLink>
+            </li>
+            <li>
+              <ExternalLink href="https://solar.lowtechmagazine.com/2018/07/fermentation-and-daily-life.html">The messy world of fermentation</ExternalLink>
+            </li>
+            <li>
+              <ExternalLink href="https://www.theguardian.com/environment/2022/may/07/secret-world-beneath-our-feet-mind-blowing-key-to-planets-future">The secret world beneath our feet is mind-blowing - and the key to our planet's future</ExternalLink>
+            </li>
+          </ul>
+        </FurtherReadings>
+      </CardWrapper>
     </Container>
   );
 };

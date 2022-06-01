@@ -8,6 +8,7 @@
 
 html {
   --color-bg: var(--oc-white);
+  --color-link: var(--oc-indigo-4);
 }
 
 html,
