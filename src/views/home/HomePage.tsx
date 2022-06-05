@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import ExternalLink from '../../components/ExternalLink';
 
 const Page = styled.div`
   display: flex;
@@ -72,6 +73,19 @@ const ProjectsDisplay = styled.section<{
 
     & > li.island {
       aspect-ratio: 1 / 1;
+
+      & > .project-label {
+        border-bottom: 1px solid var(--oc-orange-2);
+        color: var(--color-link);
+        text-decoration: underline;
+        text-decoration-color: var(--oc-orange-5);
+        transition: all 0.15s ease-out;
+
+        &:hover {
+          color: unset;
+          border-color: var(--oc-orange-5);
+        }
+      }
     }
   }
 `;
@@ -80,12 +94,6 @@ const ProjectCompostGuide = styled.li`
   &.project {
     background-color: var(--oc-orange-0);
     overflow: auto;
-
-    & > a {
-      text-decoration: underline;
-      text-decoration-color: var(--oc-orange-6);
-      border-bottom: 1px solid var(--oc-orange-5);
-    }
   }
 `;
 
@@ -120,13 +128,19 @@ const HomePage = (_: HomePageProps): React.ReactElement => {
             </h2>
             <ul>
               <ProjectCompostGuide className="island project">
-                <Link to="compost">
+                <Link className="project-label" to="compost">
                   /compost
                 </Link>
                 <p>
                   A guide to all things composting. Including the Berkeley method, FAQs, compost politics, a nitrogen:carbon reference table, printables, and more!
                 </p>
               </ProjectCompostGuide>
+              <li className="island project">
+                <ExternalLink className="project-label" href="https://votevote.page/">votevote.page</ExternalLink>
+                <p>
+                  A simulator for single-winner electoral methods.
+                </p>
+              </li>
             </ul>
           </ProjectsDisplay>
         </div>

@@ -41,6 +41,12 @@ const Container = styled.div`
     transform: scale(-2, 2) translate3d(0, 0, 0);
     pointer-events: none;
   }
+
+  & > h2 {
+    font-size: 2rem;
+    font-weight: 650;
+    margin-top: 4rem;
+  }
 `;
 
 const SplashText = styled.p`
@@ -201,6 +207,10 @@ const CompostPage = (_: CompostPageProps): React.ReactElement => {
         })}
       </p>
       <CardsSection />
+      <h2>Browns and Greens</h2>
+      <p>
+        If you prefer to 'set it and forget it' and let your food waste "cold compost", then that can totally work and you'll likely have usable soil within a year (depending on the climate where you live). The alternative to this is "hot composting" where you create the right conditions for microorganism activity to increase so much that you can actually burn your hand if you were to put it inside your heap. Regardless of how much effort you want to put into it, learning the principles of the Berkeley method can still help you create soil in a faster, safer, and possibly less stinky way!
+      </p>
     </Container>
   );
 };
