@@ -1,69 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import ExternalLink from '../../components/ExternalLink';
-
-// https://en.wikipedia.org/wiki/User:Tr3ndyBEAR/composting
-// https://daily.jstor.org/a-history-of-human-waste-as-fertilizer/
-// https://oa.mg/work/10.1215/22011919-3614962
+import RainbowText from '../../components/RainbowText';
+import CardsSection from './sections/CardsSection';
 
 interface CompostPageProps {};
 
-// const colors = [
-//   'pink',
-//   'red',
-//   'orange',
-//   'yellow',
-//   'lime',
-//   'green',
-//   'teal',
-//   'cyan',
-//   'blue',
-//   'indigo',
-//   'violet',
-//   'grape',
-// ];
-
-/*
-mycelium
-resisting reduction
-plant intelligence
-communities
-
-compost resources
-(maps)
- - makesoil.org
- - sharewaste.com
- - findacomposter.com
- - compostnow.org
-(wiki)
- - appropedia
-
-Aeon.co
-https://aeon.co/essays/mushroom-foraging-is-deadly-why-am-i-doing-it
-https://aeon.co/ideas/lets-open-our-sealed-off-lives-to-semi-permeable-architecture
-https://aeon.co/essays/organisms-are-not-passive-recipients-of-evolutionary-forces
-https://aeon.co/essays/what-can-an-embodied-history-of-trees-teach-us-about-life
-https://aeon.co/essays/japanese-culture-conquered-the-human-fear-of-creepy-crawlies
-https://aeon.co/essays/what-can-we-learn-from-natures-experience-of-catastrophes
-https://aeon.co/essays/like-start-ups-most-intentional-communities-fail-why
-https://aeon.co/essays/any-garden-i-love-must-be-wild
-https://aeon.co/essays/i-was-a-thrifty-yankee-with-a-big-crush-on-the-american-west
-https://aeon.co/essays/beyond-the-animal-brain-plants-have-cognitive-capacities-too
-
-JoDS
-https://jods.mitpress.mit.edu/pub/issue4-ionat-maholo/release/1
-https://jods.mitpress.mit.edu/pub/enlightenment-to-entanglement/release/1
-
-Shareable
-https://www.shareable.net/community-composting-resources/
-
-Low Tech Mag
-https://solar.lowtechmagazine.com/2020/04/fruit-trenches-cultivating-subtropical-plants-in-freezing-temperatures.html
-https://solar.lowtechmagazine.com/2021/03/urban-fish-ponds-low-tech-sewage-treatment-for-towns-and-cities.html
-https://solar.lowtechmagazine.com/2015/02/heating-people-not-spaces.html
-https://solar.lowtechmagazine.com/2017/02/vietnams-low-tech-fermentation-food-system-takes-advantage-of-decay.html
-https://solar.lowtechmagazine.com/2015/12/fruit-walls-urban-farming.html
-*/
+const pageDescription = `
+  This guide is meant to help you quickstart your compost journey by explaining one of the quickest composting methods you can use. The principles are inspired by the 'Berkeley method' which can produce usable soil within 18 days.
+`;
 
 const Container = styled.div`
   --pink: var(--oc-pink-4);
@@ -82,6 +26,21 @@ const Container = styled.div`
   --white: var(--oc-white);
 
   --color-link: var(--oc-cyan-6);
+
+  position: relative;
+  padding-bottom: 4rem;
+
+  & #sunflower {
+    --green: var(--oc-green-6);
+    --yellow: var(--oc-yellow-3);
+
+    display: inline;
+    position: absolute;
+    top: calc(50vh - 3rem);
+    right: 0;
+    transform: scale(-2, 2) translate3d(0, 0, 0);
+    pointer-events: none;
+  }
 `;
 
 const SplashText = styled.p`
@@ -91,7 +50,7 @@ const SplashText = styled.p`
   font-weight: 700;
   gap: 0.5rem;
   line-height: 1;
-  margin: 8rem 0 4rem;
+  margin: calc(50vh - 3rem) 0;
   position: relative;
   width: fit-content;
 
@@ -146,117 +105,27 @@ const SplashText = styled.p`
   }
 `;
 
-const CardWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  gap: 3rem;
+const PageTitle = styled.h1`
+  font-size: 2.5rem;
+  filter: saturate(0.55) brightness(0.25);
+  transition: all 2s cubic-bezier(0, 0.9, 0.8, 0.99);
 
-  & * {
-    box-sizing: border-box;
+  &:hover {
+    filter: saturate(1) brightness(1) hue-rotate(1440deg);
   }
 
-  & .card {
-    --bg-color: var(--white);
-    --border: 0.25rem solid var(--black);
-    background-color: var(--bg-color);
-    border-top: var(--border);
-    border-left: var(--border);
-    border-radius: 2px;
-    box-sizing: border-box;
-    position: relative;
-    transition: transform 0.2s ease-in;
-    flex: 1;
-  
-    height: fit-content;
+  & + p {
+    font-size: 1.25rem;
 
-    &::before {
-      border: var(--border);
-      border-radius: 2px;
-      content: '';
-      position: absolute;
-      transition: transform 0.2s ease-in-out;
-      transform: translate3d(1rem, 1rem, 0);
-      z-index: -1;
-  
-      height: 100%;
-      width: 100%;
+    & b {
+      font-weight: 400;
+
+      &.b-0 { font-weight: 700; }
+      &.b-1 { font-weight: 650; }
+      &.b-2 { font-weight: 600; }
+      &.b-3 { font-weight: 550; }
+      &.b-4 { font-weight: 500; }
     }
-
-    &:hover {
-      transform: rotate(0deg);
-      &::before {
-        transform: translate3d(0, 0, 0);
-      }
-    }
-
-    & > * {
-      border-right: var(--border);
-      border-bottom: var(--border);
-    }
-
-    & > h2 {
-      border-bottom: var(--border);
-      padding: 0.25rem 0.5rem;
-    }
-
-    & > :is(ol, ul) {
-      background-color: var(--bg-color);
-      border-bottom-right-radius: 2px;
-      height: 20rem;
-      max-height: 20rem;
-      overflow-y: auto;
-      padding: 0.5rem;
-      padding-left: 2rem;
-
-      &:hover, &:focus, &:active {
-        background:
-          linear-gradient(#ffff, #ffff),
-          linear-gradient(#ffff, #ffff) 0 100%,
-          linear-gradient(#0000 0 25%, #0005 25% 75%, #0000 75%) 50% 0,
-          linear-gradient(#0000 0 25%, #0005 25% 75%, #0000 75%) 50% 100%
-        ;
-        background-size: 100% 1rem, 100% 1rem, 50% 0.5rem, 50% 0.5rem;
-        background-attachment: local, local, scroll, scroll;
-        background-color: var(--bg-color);
-        background-repeat: no-repeat;
-      }
-    }
-  }
-`;
-
-const Quickstart = styled.aside`
-  transform: rotate(3deg);
-
-  &::before {
-    background: var(--red);
-  }
-
-  & > h2 {
-    background-color: var(--yellow);
-  }
-`;
-
-const Protips = styled.aside`
-  transform: rotate(-2deg);
-
-  &::before {
-    background: var(--indigo);
-  }
-
-  & > h2 {
-    background-color: var(--grape);
-  }
-`;
-
-const FurtherReadings = styled.aside`
-  transform: rotate(1deg);
-
-  &::before {
-    background: var(--green);
-  }
-
-  & > h2 {
-    background-color: var(--cyan);
   }
 `;
 
@@ -291,73 +160,47 @@ const CompostPage = (_: CompostPageProps): React.ReactElement => {
           <span>—The Lorax</span>
         </span>
       </SplashText>
-      <CardWrapper>
-        {/* <svg className="balls" viewBox={`-50 0 ${colors.length * 100} 100`} height="50px" width="100%">
-          {colors.map((color, i, arr) => (
-            <circle
-              key={color}
-              cx={i * 100}
-              cy={50}
-              r={40}
-              fill={`var(--oc-${color}-4)`}
-            />
-          ))}
-        </svg> */}
-        <Quickstart className="card">
-          <h2>Quickstart</h2>
-          <ol>
-            <li>
-              Shred/mulch/blend the organic matter (browns and greens, but browns especially).
-            </li>
-            <li>
-              Pay attention to the ingredients and calculate your overall <abbr title="carbon to nitrogen">C:N</abbr> ratio and try to get it to around 25:1. Additionally, look out for any ingredients that might make the pH too acidic or alkaline. Also make sure there are good sources of specific minerals. Add special ingredients as needed.
-            </li>
-            <li>
-              Make a heap of compost that's about a 1.5m cube. You can add bokashi or other <abbr title="effective microorganisms">EMO</abbr>s to help ferment. You should at least add some healthy soil to introduce certain microbes. You can also make sure worms are in the mix to help out.
-            </li>
-            <li>
-              Keep it in the sun, but water it to make sure it doesn't dry out. After 4 days, take the outsides of the heap and put it in another heap. Then take the insides and make a wall around the outside bits with the inside bits.
-            </li>
-            <li>
-              Repeat step 4 until you have good quality compost (~2 weeks). After you plant your plants, you can add mycorrhizal fungi mix.
-            </li>
-          </ol>
-        </Quickstart>
-        <Protips className="card">
-          <h2>Protips</h2>
-          <ul>
-            <li>Stay in drugs</li>
-            <li>Eat your school</li>
-            <li>Don&apos;t do vegetables</li>
-          </ul>
-        </Protips>
-        <FurtherReadings className="card">
-          <h2>Further Readings</h2>
-          <ul>
-            <li>
-              <ExternalLink href="https://daily.jstor.org/a-history-of-human-waste-as-fertilizer/">A history of human waste as fertilizer</ExternalLink>
-            </li>
-            <li>
-              <ExternalLink href="https://oa.mg/work/10.1215/22011919-3614962">Compost politics: Experimenting with togetherness in vermicomposting</ExternalLink>
-            </li>
-            <li>
-              <ExternalLink href="https://aeon.co/essays/ours-is-the-waste-age-thats-the-key-to-tranforming-the-future">Ours is the waste age: that&apos;s the key to transforming the future</ExternalLink>
-            </li>
-            <li>
-              <ExternalLink href="https://www.youtube.com/watch?v=OS9uhASKyjA">Japan&apos;s town with no waste</ExternalLink>
-            </li>
-            <li>
-              <ExternalLink href="https://www.shareable.net/how-to-free-the-soil-by-depaving/">How to free the soil by depaving</ExternalLink>
-            </li>
-            <li>
-              <ExternalLink href="https://solar.lowtechmagazine.com/2018/07/fermentation-and-daily-life.html">The messy world of fermentation</ExternalLink>
-            </li>
-            <li>
-              <ExternalLink href="https://www.theguardian.com/environment/2022/may/07/secret-world-beneath-our-feet-mind-blowing-key-to-planets-future">The secret world beneath our feet is mind-blowing - and the key to our planet's future</ExternalLink>
-            </li>
-          </ul>
-        </FurtherReadings>
-      </CardWrapper>
+      <svg id="sunflower" viewBox="0 0 72 72" height="72px" vectorEffect="non-scaling-stroke">
+        <g className="color">
+          <path fill="var(--yellow)" stroke="none" d="M43.2779,20.5208c0.2751-0.6458,1.4448-3.2894,1.915-3.8596c2.5924-3.1437,7.5403-3.3442,7.5403-3.3442 s0.7413,4.8964-1.8486,8.0389c-0.7005,0.8493-1.573,1.4837-2.4733,1.9575l-1.8646,0.8496 c0.8166-0.4354,3.5897-1.6339,4.5743-1.7568c4.0433-0.5046,7.7775,2.7478,7.7775,2.7478s-2.8239,4.0682-6.8647,4.5736 c-1.5043,0.1875-2.9658-0.1449-4.2082-0.6363l-1.5123-0.5623c1.0721,0.4001,3.6449,1.5619,4.525,2.46 c2.8519,2.9103,2.5281,7.8516,2.5281,7.8516s-4.9474,0.2194-7.7984-2.6884c-0.6293-0.6423-1.8855-3.7761-2.2431-4.5413 l0.7669,2.3973c0.2385,0.7124,0.3923,1.4743,0.4068,2.268c0.0742,4.074-3.5548,7.4433-3.5548,7.4433s-3.7467-3.2383-3.822-7.3099 c-0.0151-0.834,1.3468-4.7053,1.3468-4.7053l-1.1396,2.622c-1.7718,2.4884-4.5155,4.1433-7.5548,4.4487 c-0.9254,0.093-1.5437,0.0656-1.5437,0.0656s-0.3238-4.9413,2.5281-7.8516c0.8287-0.8457,1.8343-1.4269,2.844-1.8259l1.711-0.7108 c-0.0038,0.0015-4.3141,1.4544-5.7507,1.2753c-4.0408-0.5054-6.8647-4.5736-6.8647-4.5736s3.7341-3.2524,7.7775-2.7478 c0.8371,0.1045,3.8427,1.578,4.5608,1.9202l-2.2099-1.2115c-0.7715-0.4485-1.5076-1.0231-2.1146-1.759 c-2.59-3.1425-1.8486-8.0389-1.8486-8.0389s4.9479,0.2005,7.5403,3.3441c0.5013,0.6079,1.8537,3.2157,2.135,3.9064l-0.9102-1.9404 c-0.2945-0.7916-0.49-1.6496-0.5066-2.5482c-0.0737-4.0736,3.5548-7.4433,3.5548-7.4433s3.7478,3.2359,3.822,7.3099 c0.0163,0.8967-0.1467,1.7592-0.411,2.5592"/>
+          <circle cx="40.7923" cy="26.177" r="5" fill="var(--orange)" stroke="none"/>
+          <path fill="var(--green)" stroke="none" d="M23.3647,38.9665c2.3438,2.8687,1.6469,7.3169,1.6469,7.3169s-4.4974-0.2037-6.8419-3.0725 s-1.6469-7.3169-1.6469-7.3169S21.0209,36.1001,23.3647,38.9665z"/>
+          <path fill="var(--green)" stroke="none" d="M36.6533,52.5013c2.8575-2.3347,7.2883-1.6405,7.2883-1.6405s-0.2029,4.4799-3.0605,6.8152 c-2.8575,2.3353-7.2883,1.6405-7.2883,1.6405S33.7981,54.836,36.6533,52.5013z"/>
+          <path fill="none" stroke="#FFFFFF" stroke-miterlimit="10" stroke-width="2" d="M25.9551,16.18"/>
+          <path fill="none" stroke="#FFFFFF" stroke-miterlimit="10" stroke-width="2" d="M44.1915,16.0582"/>
+        </g>
+        <g xmlns="http://www.w3.org/2000/svg" className="line">
+          <path fill="none" stroke="#000000" stroke-miterlimit="10" d="M65.7251,28.3957"/>
+          <circle cx="40.7923" cy="26.177" r="5" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          <path fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M23.8586,38.5631 c2.7895,3.4142,1.96,8.708,1.96,8.708s-5.3525-0.2425-8.1427-3.6566s-1.96-8.708-1.96-8.708S21.0691,35.1517,23.8586,38.5631z"/>
+          <path fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M43.2779,20.5208 c0.2751-0.6458,1.4448-3.2894,1.915-3.8596c2.5924-3.1437,7.5403-3.3442,7.5403-3.3442s0.7413,4.8964-1.8486,8.0389 c-0.7005,0.8493-1.573,1.4837-2.4733,1.9575l-1.8646,0.8496c0.8166-0.4354,3.5897-1.6339,4.5743-1.7568 c4.0433-0.5046,7.7775,2.7478,7.7775,2.7478s-2.8239,4.0682-6.8647,4.5736c-1.5043,0.1875-2.9658-0.1449-4.2082-0.6363 l-1.5123-0.5623c1.0721,0.4001,3.6449,1.5619,4.525,2.46c2.8519,2.9103,2.5281,7.8516,2.5281,7.8516s-4.9474,0.2194-7.7984-2.6884 c-0.6293-0.6423-1.8855-3.7761-2.2431-4.5413l0.7669,2.3973c0.2385,0.7124,0.3923,1.4743,0.4068,2.268 c0.0742,4.074-3.5548,7.4433-3.5548,7.4433s-3.7467-3.2383-3.822-7.3099c-0.0151-0.834,1.3468-4.7053,1.3468-4.7053l-1.1396,2.622 c-1.7718,2.4884-4.5155,4.1433-7.5548,4.4487c-0.9254,0.093-1.5437,0.0656-1.5437,0.0656s-0.3238-4.9413,2.5281-7.8516 c0.8287-0.8457,1.8343-1.4269,2.844-1.8259l1.711-0.7108c-0.0038,0.0015-4.3141,1.4544-5.7507,1.2753 c-4.0408-0.5054-6.8647-4.5736-6.8647-4.5736s3.7341-3.2524,7.7775-2.7478c0.8371,0.1045,3.8427,1.578,4.5608,1.9202 l-2.2099-1.2115c-0.7715-0.4485-1.5076-1.0231-2.1146-1.759c-2.59-3.1425-1.8486-8.0389-1.8486-8.0389s4.9479,0.2005,7.5403,3.3441 c0.5013,0.6079,1.8537,3.2157,2.135,3.9064l-0.9102-1.9404c-0.2945-0.7916-0.49-1.6496-0.5066-2.5482 c-0.0737-4.0736,3.5548-7.4433,3.5548-7.4433s3.7478,3.2359,3.822,7.3099c0.0163,0.8967-0.1467,1.7592-0.411,2.5592"/>
+          <path fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M36.2415,51.9973 c3.4142-2.7895,8.708-1.96,8.708-1.96s-0.2425,5.3525-3.6566,8.1427c-3.4142,2.7902-8.708,1.96-8.708,1.96 S32.8301,54.7868,36.2415,51.9973z"/>
+          <path fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M34.3663,41.0292 c-3.438,3.548-7.676,10.246-5.829,20.735"/>
+        </g>
+      </svg>
+      <PageTitle>
+        <RainbowText text="The Rapid Compost Guide" />
+      </PageTitle>
+      <p>
+        {pageDescription.split(/\s/).map((word, i) => {
+          if (word.length < 4) return (
+            <span key={i}>
+              {`${word} `}
+            </span>
+          );
+
+          const firstHalf = word.substring(0, word.length / 2);
+          const secondHalf = word.substring(word.length / 2);
+
+          return (
+            <>
+              {firstHalf.split('').map((letter, j) => <b key={`b-${j}`} className={`b-${j}`}>{letter}</b>)}
+              <span key={`${i}-rest`}>{secondHalf} </span>
+            </>
+          );
+        })}
+      </p>
+      <CardsSection />
     </Container>
   );
 };

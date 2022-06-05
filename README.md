@@ -26,7 +26,10 @@ A list of tools/toys I wanna play with.
    - neumorphism, glassmorphism
    - claymorphism
    - brutalist
-   - neubrutalist
+   - [x] neubrutalist
+ - design inspo sites
+   - [basedash.com](https://www.basedash.com/) - design is slightly unpolished but at least it doesn't look like another Stripe clone
+   - 
  - cool design manifestos:
    - [gridless.design](https://gridless.design/)
    - [inclusivedesignprinciples.org](https://inclusivedesignprinciples.org/)
@@ -37,6 +40,16 @@ A list of tools/toys I wanna play with.
  - code gimmicks: 
    - [ninja code](https://javascript.info/ninja-code)
    - konami code in js
+ - design experiements
+   - [ascii art](https://github.com/Kirilllive/ASCII_Art_Paint?ref=producthunt)
+   - [half bolded words](https://www.jiffyreader.com/) - I wanna experiment with different strategies
+     - bold first half
+     - boldness gradient
+     - bold only consonants
+     - bold only letters shaped diff
+     - bold starts of syllabels
+     - color? size? letter spacing? serif-ness?
+
 
 Tools that would require a totally new project template
  - React offshoots: [preact](https://preactjs.com/), [inferno](https://www.infernojs.org/), [solid](https://www.solidjs.com/)
