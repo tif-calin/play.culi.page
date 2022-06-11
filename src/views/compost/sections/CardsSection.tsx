@@ -199,7 +199,7 @@ const CardsSection = () => (
     <Protips className="card">
       <h2>Protips</h2>
       <ul>
-        <li>Moisture content should be ~50-60%. A good rule of thumb is to take a handful of compost and squeeze it. If water comes out, it&appos;s too wet. If it crumbles, it&apos;s too dry. A more thorough way to measure would be to weigh some compost before and after drying it out.</li>
+        <li>Moisture content should be ~50-60%. A good rule of thumb is to take a handful of compost and squeeze it. If water comes out, it&apos;s too wet. If it crumbles, it&apos;s too dry. A more thorough way to measure would be to weigh some compost before and after drying it out.</li>
         <li>Sun and rain are important natural elements to decomposition but too much sun exposure can dry out your pile and too much rain can waterlog it and create conditions for anaerobic bacteria to survive.</li>
         <li>Many guides suggest "layering" your piles (e.g. 3 layers of brown and 1 layer of green). This doesn't really help with anything, but may make it easier to keep track of the brown:green ratios.</li>
         <li>High temperatures is obviously the goal with hot composting, but temperatures that are too high can kill even most thermophiles. If temperatures get above ~65°C (149°F) cool down the pile by turning it over in order to cool it down. The goal is to maintain a temperature above 55°C (131°F) since this is where most pathogens to plants (and even to humans) die off.</li>

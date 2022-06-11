@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import RainbowText from '../../components/RainbowText';
+import SpeedText from './components/SpeedText';
 import CardsSection from './sections/CardsSection';
 
 interface CompostPageProps {};
@@ -46,6 +47,10 @@ const Container = styled.div`
     font-size: 2rem;
     font-weight: 650;
     margin-top: 4rem;
+  }
+
+  & p {
+    font-size: 1.25rem;
   }
 `;
 
@@ -119,20 +124,6 @@ const PageTitle = styled.h1`
   &:hover {
     filter: saturate(1) brightness(1) hue-rotate(1440deg);
   }
-
-  & + p {
-    font-size: 1.25rem;
-
-    & b {
-      font-weight: 400;
-
-      &.b-0 { font-weight: 700; }
-      &.b-1 { font-weight: 650; }
-      &.b-2 { font-weight: 600; }
-      &.b-3 { font-weight: 550; }
-      &.b-4 { font-weight: 500; }
-    }
-  }
 `;
 
 const CompostPage = (_: CompostPageProps): React.ReactElement => {
@@ -188,28 +179,14 @@ const CompostPage = (_: CompostPageProps): React.ReactElement => {
         <RainbowText text="The Rapid Compost Guide" />
       </PageTitle>
       <p>
-        {pageDescription.split(/\s/).map((word, i) => {
-          if (word.length < 4) return (
-            <span key={i}>
-              {`${word} `}
-            </span>
-          );
-
-          const firstHalf = word.substring(0, word.length / 2);
-          const secondHalf = word.substring(word.length / 2);
-
-          return (
-            <>
-              {firstHalf.split('').map((letter, j) => <b key={`b-${j}`} className={`b-${j}`}>{letter}</b>)}
-              <span key={`${i}-rest`}>{secondHalf} </span>
-            </>
-          );
-        })}
+        <SpeedText text={pageDescription} />
       </p>
       <CardsSection />
       <h2>Browns and Greens</h2>
       <p>
-        If you prefer to 'set it and forget it' and let your food waste "cold compost", then that can totally work and you'll likely have usable soil within a year (depending on the climate where you live). The alternative to this is "hot composting" where you create the right conditions for microorganism activity to increase so much that you can actually burn your hand if you were to put it inside your heap. Regardless of how much effort you want to put into it, learning the principles of the Berkeley method can still help you create soil in a faster, safer, and possibly less stinky way!
+        <SpeedText
+          text={`If you prefer to 'set it and forget it' and let your food waste "cold compost", then that can totally work and you'll likely have usable soil within a year (depending on the climate where you live). The alternative to this is "hot composting" where you create the right conditions for microorganism activity to increase so much that you can actually burn your hand if you were to put it inside your heap. Regardless of how much effort you want to put into it, learning the principles of the Berkeley method can still help you create soil in a faster, safer, and possibly less stinky way!`}
+        />
       </p>
     </Container>
   );

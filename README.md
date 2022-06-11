@@ -29,7 +29,12 @@ A list of tools/toys I wanna play with.
    - [x] neubrutalist
  - design inspo sites
    - [basedash.com](https://www.basedash.com/) - design is slightly unpolished but at least it doesn't look like another Stripe clone
-   - 
+   - bold 2-ish color palettes: 
+     - [js.org](https://js.org/) - black and yellow
+     - [peoplesummit2022.org](https://peoplessummit2022.org/) - blue and grainy white (with purple and yellow secondary)
+     - more bold color palettes: https://ronikaufman.github.io/color_pals/
+   - "calm computing" vibe: [raquelbreternitz.com](https://raquelbreternitz.com/), [www.a11ywithlindsey.com](https://www.a11ywithlindsey.com/), [urbit](https://urbit.org/blog/urbit-for-normies)
+   - [practicalplants.org](https://practicalplants.org/) and [activisthandbook.org](https://www.activisthandbook.org/) are both pretty cool examples of alternative wiki designs
  - cool design manifestos:
    - [gridless.design](https://gridless.design/)
    - [inclusivedesignprinciples.org](https://inclusivedesignprinciples.org/)
@@ -37,6 +42,7 @@ A list of tools/toys I wanna play with.
    - [html.energy](https://html.energy/index.html)
    - [handmade.network](https://handmade.network/manifesto)
    - [whimsical.club](https://whimsical.club/about/)
+   - [principles.design](https://principles.design/)
  - code gimmicks: 
    - [ninja code](https://javascript.info/ninja-code)
    - konami code in js
