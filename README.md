@@ -56,7 +56,6 @@ A list of tools/toys I wanna play with.
      - bold starts of syllabels
      - color? size? letter spacing? serif-ness?
 
-
 Tools that would require a totally new project template
  - React offshoots: [preact](https://preactjs.com/), [inferno](https://www.infernojs.org/), [solid](https://www.solidjs.com/)
  - Alternative frameworks: svelte (see [svelte.recipes](https://svelte.recipes/))
