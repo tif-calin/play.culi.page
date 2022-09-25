@@ -166,8 +166,8 @@ const ProjectVoteVote = styled.li`
   @keyframes yellow-bar {
     10% { top: 70%; }
     30% { top: 55%; }
-    50% { top: 15%; }
-    90% { top: 15%; }
+    50% { top: 30%; }
+    90% { top: 30%; }
   }
 
   @keyframes red-bar {
@@ -229,9 +229,9 @@ const HomePage = (_: HomePageProps): React.ReactElement => {
                 <div className="bar yellow" role="presentation" />
                 <div className="bar red" role="presentation" />
               </ProjectVoteVote>
-              {/* <li className="island project">
-
-              </li> */}
+              <li className="island project">
+                tk
+              </li>
             </ul>
           </ProjectsDisplay>
         </div>
