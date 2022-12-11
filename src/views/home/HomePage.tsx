@@ -185,16 +185,29 @@ const ProjectVoteVote = styled.li`
 interface HomePageProps {};
 
 const blah = [
+  'tests',
+  'trials',
   'mockups',
   'prototypes',
+  'experiments',
   'side projects',
+  'hobby projects',
   'passion projects',
   'personal projects',
-  'proofs of concept',
-  'hobby projects',
-  'experiments',
+  'minimum viable products',
+  'proof-of-concepts',
+  'demonstrations',
+  'investigations',
+  'mini projects',
+  'field tests',
   'blueprints',
-  'interests, '
+  'dummy runs',
+  'trial-runs',
+  'pitches',
+  'pilots',
+  'betas',
+  'ideas',
+  'demos, '
 ];
 
 const HomePage = (_: HomePageProps): React.ReactElement => {
@@ -221,7 +234,9 @@ const HomePage = (_: HomePageProps): React.ReactElement => {
                 </p>
               </ProjectCompostGuide>
               <ProjectVoteVote className="island project">
-                <ExternalLink className="project-label" href="https://votevote.page/">votevote.page</ExternalLink>
+                <ExternalLink className="project-label" href="https://votevote.page/">
+                  votevote.page
+                </ExternalLink>
                 <p>
                   A simulator for single-winner electoral methods.
                 </p>
@@ -230,7 +245,12 @@ const HomePage = (_: HomePageProps): React.ReactElement => {
                 <div className="bar red" role="presentation" />
               </ProjectVoteVote>
               <li className="island project">
-                tk
+                <ExternalLink className="project-label" href="https://ascii.dataviz.gallery/">
+                  ascii.dataviz.gallery
+                </ExternalLink>
+                <p>
+                  My collection of ascii, ansi, and unicode-based data visualizations libraries.
+                </p>
               </li>
             </ul>
           </ProjectsDisplay>
