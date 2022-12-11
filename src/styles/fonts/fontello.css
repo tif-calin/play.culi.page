@@ -1,0 +1,24 @@
+
+/*
+https://fontello.com/
+
+This is a custom icon "font" with only a handful of necessary icons. Don't @me Sara Soueidan.
+
+U+1F500 (🔀)    shuffle (Font Awesome) 
+U+1F53D (🔽)    down-open (Font Awesome)
+U+21BA (↺)    ccw (Font Awesome)
+U+2716 (✖)   cancel (Font Awesome)
+U+2795 (➕)   plus (Font Awesome)
+U+2197 (↗)    link-ext (Font Awesome)
+U+1FBCD (🯅)   universal-access (Font Awesome)
+U+24D8 (ⓘ)    info-circled-alt (MFG Labs)
+U+FE56 (﹖)    question (MFG Labs)
+*/
+
+@charset "UTF-8";
+@font-face {
+  font-family: 'Icons';
+  src: url('../font/icons.woff2?43985526') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
