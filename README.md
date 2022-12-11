@@ -65,6 +65,16 @@ A list of tools/toys I wanna play with.
   - [radial select dropdown](https://github.com/RiftValleySoftware/RVS_Spinner)
   - v2 of [my budgetory sliders](https://dontplaywithculi.netlify.app/rate/multi)
   - graph-based commenting system
+- use the platform! js and web APIs
+  - `Intl.NumberFormat`
+  - `prefers-reduced-data`
+  - `scrollbar-gutter`
+  - `overscroll-behavior`
+  - `content-visibility`
+  - `border-inline`
+  - `String.prototype.match` ([specifically](https://pbs.twimg.com/media/FgIpz0VXoAEGPTp?format=jpg&name=medium))
+- random apis to play with
+  - https://randomuser.me/api/ 
 
 Tools that would require a totally new project template
 - React offshoots: [preact](https://preactjs.com/), [inferno](https://www.infernojs.org/), [solid](https://www.solidjs.com/)
