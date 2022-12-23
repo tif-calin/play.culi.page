@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import ExternalLink from '../../components/ExternalLink';
+import AsciiDatavizProject from './projects/AsciiDatavizProject';
 
 const Page = styled.div`
   --red: var(--oc-red-4);
@@ -244,14 +245,7 @@ const HomePage = (_: HomePageProps): React.ReactElement => {
                 <div className="bar yellow" role="presentation" />
                 <div className="bar red" role="presentation" />
               </ProjectVoteVote>
-              <li className="island project">
-                <ExternalLink className="project-label" href="https://ascii.dataviz.gallery/">
-                  ascii.dataviz.gallery
-                </ExternalLink>
-                <p>
-                  My collection of ascii, ansi, and unicode-based data visualizations libraries.
-                </p>
-              </li>
+              <AsciiDatavizProject />
             </ul>
           </ProjectsDisplay>
         </div>
