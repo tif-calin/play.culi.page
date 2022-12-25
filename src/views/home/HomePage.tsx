@@ -85,7 +85,7 @@ const ProjectsDisplay = styled.section<{
     & > .project {
       aspect-ratio: 1 / 1;
 
-      & > .project-label {
+      & > :where(.project-label) {
         border-bottom: 1px solid var(--oc-orange-2);
         color: var(--color-link);
         text-decoration: underline;

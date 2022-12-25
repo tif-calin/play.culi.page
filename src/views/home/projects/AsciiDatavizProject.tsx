@@ -3,12 +3,14 @@ import ExternalLink from '../../../components/ExternalLink';
 import ProjectBox from '../components/ProjectBox';
 
 const StyledProjectBox = styled(ProjectBox)<any>`
-  --offblack: var(--oc-gray-9);
-  --offwhite: var(--oc-gray-0);
-  --color-link: var(--yellow);
+  &.this.this {
+    --offblack: var(--oc-gray-9);
+    --offwhite: var(--oc-gray-0);
+    --color-link: var(--yellow);
 
-  background-color: var(--offblack);
-  color: var(--offwhite);
+    background-color: var(--offblack);
+    color: var(--offwhite);
+  }
 `;
 
 interface AsciiDatavizProjectProps {
@@ -17,7 +19,7 @@ interface AsciiDatavizProjectProps {
 
 const AsciiDatavizProject = ({ className, ...props }: AsciiDatavizProjectProps) => {
   return (
-    <StyledProjectBox className={className} {...props}>
+    <StyledProjectBox className={className + ' this'} {...props}>
       {/* TODO: add dark background and ascii graph */}
       <ExternalLink className="project-label inverse" href="https://ascii.dataviz.gallery/">
         ascii.dataviz.gallery
