@@ -7,6 +7,7 @@ import HomePage from './views/home';
 
 const CompostPage = React.lazy(() => import('./views/compost'));
 const CashBoardPage = React.lazy(() => import('./views/cashboard'));
+const CatfoodPriceObservationsPage = React.lazy(() => import('./views/cfpo'));
 
 const page2repo: Record<string, { breadcrumbs?: string[], path?: string }> = {
   'home': {
@@ -44,6 +45,11 @@ const App = () => {
           <Route path="/cashboard" element={(
             <React.Suspense fallback={<>loading...</>}>
               <CashBoardPage />
+            </React.Suspense>
+          )} />
+          <Route path="/cfpo" element={(
+            <React.Suspense fallback={<>loading...</>}>
+              <CatfoodPriceObservationsPage />
             </React.Suspense>
           )} />
           <Route path="*" element={<Navigate to="/" />} />
