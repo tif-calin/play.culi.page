@@ -6,6 +6,7 @@ import Layout from './components/layout';
 import HomePage from './views/home';
 
 const CompostPage = React.lazy(() => import('./views/compost'));
+const CashBoardPage = React.lazy(() => import('./views/cashboard'));
 
 const page2repo: Record<string, { breadcrumbs?: string[], path?: string }> = {
   'home': {
@@ -38,6 +39,11 @@ const App = () => {
           <Route path="/compost" element={(
             <React.Suspense fallback={<>loading...</>}>
               <CompostPage />
+            </React.Suspense>
+          )} />
+          <Route path="/cashboard" element={(
+            <React.Suspense fallback={<>loading...</>}>
+              <CashBoardPage />
             </React.Suspense>
           )} />
           <Route path="*" element={<Navigate to="/" />} />
