@@ -56,12 +56,18 @@ const FancyInput = ({
   return (
     <Container>
       {type === 'textarea' ? (
-        <textarea id={inputId} placeholder=" " required={required} />
+        <textarea 
+          id={inputId}
+          name={label}
+          placeholder=" "
+          required={required}
+        />
       ) : (
         <input
-          placeholder=" " 
-          type={type} 
           id={inputId} 
+          name={label}
+          type={type} 
+          placeholder=" " 
           defaultValue={type === 'date' ? new Date().toISOString().split('T')[0] : undefined}
           required={required}
         />

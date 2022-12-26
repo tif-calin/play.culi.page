@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import FancyInput from './components/FancyInput';
+import PageContextProvider, { usePricesObsData } from './PageContext';
+import ImportSection from './sections/ImportSection';
 
 const Page = styled.div`
   --color-link: var(--oc-blue-1);
@@ -33,6 +35,17 @@ const Page = styled.div`
 
   & section {
     flex: 1;
+
+    & > div {
+      background: var(--color-fg);
+      border-radius: 0.2rem;
+      color: var(--color-bg);
+      padding: 1rem;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
   }
 
   & .disclaimer {
@@ -47,11 +60,50 @@ const Page = styled.div`
     }
   }
 
-  & section > div {
-    background: var(--color-fg);
+  & * {
+    max-width: 100%;
+  }
+
+  & :where(input, textarea, select, button) {
+    background: var(--color-input);
+    border: 2px solid var(--color-line);
     border-radius: 0.2rem;
-    color: var(--color-bg);
-    padding: 1rem;
+    height: 2rem;
+    padding: 0.25rem 0.4rem;
+    width: 18rem;
+
+    &[type="number"] {
+      width: 6rem;
+    }
+
+    &:where(select) {
+      background: var(--color-input-2);
+      width: 3rem;
+    }
+
+    &:where(select, button, input[type="file"]) {
+      cursor: pointer;
+    }
+
+    &:where(button) {
+      background: var(--color-input-2);
+      transition: all 0.1s ease-in-out;
+      transition-property: background-color, color;
+
+      &:not(:disabled):hover {
+        background: var(--color-bg);
+        color: var(--color-fg);
+      }
+    }
+  }
+
+  & .squish {
+    width: fit-content;
+    align-items: flex-end;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    flex-wrap: wrap;
   }
 `;
 
@@ -73,44 +125,11 @@ const AddObservationForm = styled.form`
     }
   }
 
-  & :where(input, textarea, select, button) {
-    background: var(--color-input);
-    border: 2px solid var(--color-line);
-    border-radius: 0.2rem;
-    height: 2rem;
-    padding: 0.25rem 0.4rem;
-    width: 18rem;
-
-    &[type="number"] {
-      width: 6rem;
-    }
-
-    &:where(select) {
-      width: 3rem;
-    }
-
-    &:where(select, button) {
-      background: var(--color-input-2);
-      cursor: pointer;
-    }
-
-    &:where(button) {
-      transition: all 0.1s ease-in-out;
-      transition-property: background-color, color;
-
-      &:hover {
-        background: var(--color-bg);
-        color: var(--color-fg);
-      }
-    }
-  }
-
   & .squish {
     border: 1px dashed var(--color-line);
     padding: 0.25rem;
     border-radius: 0.2rem;
     margin-left: -0.25rem;
-    width: fit-content;
 
     padding-top: calc(0.5rem + 2px);
 
@@ -122,70 +141,63 @@ const AddObservationForm = styled.form`
         padding-top: calc(0.5rem + 2px);
       }
     }
-
-    align-items: flex-end;
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
-    flex-wrap: wrap;
   }
 `;
 
 interface CatfoodPriceObservationsPageProps {};
 
 const CatfoodPriceObservationsPage = (_: CatfoodPriceObservationsPageProps): React.ReactElement => {
-  return (
-    <Page>
-      <h1>catfood price tracker</h1>
-      <section>
-        <h2>Add observations</h2>
-        <div>
-          <AddObservationForm>
-            <FancyInput label="store" />
-            {/* 
-              autofill 
-              show suggestions for other most popular choices
-            */}
-            <FancyInput label="cfdb url" type="url" />
-            <div className="squish">
-              <FancyInput label="price" type="number" />
-              <span>for</span>
-              <FancyInput label="size" type="number" />
-              <select>
-                <option value="g">g</option>
-                <option value="kg">kg</option>
-                <option value="oz">oz</option>
-                <option value="lb">lb</option>
-              </select>
-            </div>
-            <FancyInput label="date" type="date" />
+  const { data: obs } = usePricesObsData();
 
-            <button type="submit" formMethod='' >Add observation</button>
-          </AddObservationForm>
-        </div>
-      </section>
-      <section>
-        <h2>Visualize data</h2>
-        <div>
-          hiii
-        </div>
-      </section>
-      <section>
-        <h2>Export data</h2>
-        <div>
-          hiii
-        </div>
-      </section>
-      <section>
-        <h2>Import data</h2>
-        <div>
-          hiii
-        </div>
-      </section>
-      <p className="disclaimer">
-        See <a href="https://dontplaywithculi.netlify.app/catfood">original implementation here</a>. Please excuse the terrible UI. I was experimenting with component libraries.
-      </p>
-    </Page>
+  return (
+    <PageContextProvider>
+      <Page>
+        <h1>catfood price tracker</h1>
+        <section>
+          <h2>Add observations</h2>
+          <div>
+            <AddObservationForm>
+              <FancyInput label="store" />
+              {/* 
+                autofill 
+                show suggestions for other most popular choices
+              */}
+              <FancyInput label="cfdb url" type="url" />
+              <div className="squish">
+                <FancyInput label="price" type="number" />
+                <span>for</span>
+                <FancyInput label="size" type="number" />
+                <select name="weight-unit">
+                  <option value="g">g</option>
+                  <option value="kg">kg</option>
+                  <option value="oz">oz</option>
+                  <option value="lb">lb</option>
+                </select>
+              </div>
+              <FancyInput label="date" type="date" />
+
+              <button type="submit" formMethod='' >Add observation</button>
+            </AddObservationForm>
+          </div>
+        </section>
+        <section>
+          <h2>Visualize data</h2>
+          <div>
+            hiii
+          </div>
+        </section>
+        <section>
+          <h2>Export data</h2>
+          <div>
+            hiii
+          </div>
+        </section>
+        <ImportSection />
+        <p className="disclaimer">
+          See <a href="https://dontplaywithculi.netlify.app/catfood">original implementation here</a>. Please excuse the terrible UI. I was experimenting with component libraries.
+        </p>
+      </Page>
+    </PageContextProvider>
   );
 };
 
