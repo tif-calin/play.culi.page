@@ -12,7 +12,20 @@ export type PriceObs = {
   address: string;
 };
 
-export type CfdbData = {
+export const importantCfdbFields = [
+  'brand' 
+  , 'dry_matter_analysis' 
+  , 'ingredients' 
+  , 'ingredient_rating' 
+  , 'name'
+  , 'nutrition_rating' 
+  , 'type'
+  , 'url' 
+  , 'url_manufacturer' 
+  // we're writing elm now
+] as const;
+
+export type CfdbData = Pick<{
   name: string;
   url: string;
   url_manufacturer: string;
@@ -50,7 +63,7 @@ export type CfdbData = {
     carb: number;
     ash: number;
   };
-};
+}, typeof importantCfdbFields[number]>;
 
 // Context
 interface PageContextInterface {

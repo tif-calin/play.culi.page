@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CfdbData, PriceObs, useCfdbData, usePricesObsData } from '../PageContext';
+import { CfdbData, importantCfdbFields, PriceObs, useCfdbData, usePricesObsData } from '../PageContext';
 
 const Container = styled.section`
   & input[type="file"] {
@@ -29,7 +29,7 @@ const Container = styled.section`
 
 const { format: ppNumber } = new Intl.NumberFormat('en-US');
 
-const FileForm = <Data,>({
+const FileForm = <Data extends PriceObs | CfdbData,>({
   id,
   text,
   fileType,
@@ -42,13 +42,25 @@ const FileForm = <Data,>({
   buttonLabel: string;
   onSubmit: (data: Data[]) => void;
 }) => {
+  const formRef = React.useRef<HTMLFormElement>(null);
   const [uploadedData, setUploadedData] = React.useState<Data[]>();
 
   return (
-    <form className="column" id={id}>
+    <form 
+      className="column" 
+      id={id} 
+      ref={formRef}
+      onSubmit={e => {
+        e.preventDefault();
+        if (uploadedData) {
+          onSubmit(uploadedData);
+          setUploadedData(undefined);
+          
+          formRef.current?.reset();
+        }
+      }}>
       <p>{text}</p>
       <input
-        name="file"
         type="file" 
         accept={`.${fileType}`}
         onChange={e => {
@@ -58,26 +70,51 @@ const FileForm = <Data,>({
 
           const reader = new FileReader();
           reader.readAsText(file);
-          reader.onload = (e) => {
+          reader.onload = e => {
             const data = e.target?.result;
+            let json: Data[] = [];
             if (typeof data !== 'string') return;
 
-            const json: Data[] = JSON.parse(data);
-            
+            if (fileType === 'csv') {
+              // @ts-ignore
+              json = data
+                .split('\n')
+                .filter(Boolean)
+                .map(line => line.trim().split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/))
+                .slice(1)
+                .map(entry => {
+                  const [date, brand, product, price, weight, store, address] = entry;
+                  return {
+                    date,
+                    brand,
+                    product,
+                    price: Math.round(Number(price) * 10_000) / 10_000,
+                    weight: Number(weight),
+                    store,
+                    address
+                  };
+                }) as Data[]
+              ;
+            } else {
+              const fieldsToKeep = new Set<string>(importantCfdbFields);
+              json = JSON.parse(data).map((entry: Data) => 
+                Object.fromEntries(
+                  Object.entries(entry).filter(([key]) => fieldsToKeep.has(key))
+                )
+              );
+            }
+
             setUploadedData(json);
           };
         }}
       />
       <button 
+        type="submit"
         disabled={!uploadedData}
-        onSubmit={e => {
-          e.preventDefault();
-          if (uploadedData) onSubmit(uploadedData);
-        }}
       >
         {uploadedData?.length
-          ? `import ${ppNumber(uploadedData.length)} ${buttonLabel}`
-          : `import ${buttonLabel} (${fileType})`
+          ? `import ${ppNumber(uploadedData.length)} ${buttonLabel} rows`
+          : `import ${buttonLabel} data (${fileType})`
         }
       </button>
     </form>
@@ -85,7 +122,7 @@ const FileForm = <Data,>({
 };
 
 const ImportSection = () => {
-  const { data: obsData } = usePricesObsData();
+  const { data: obsData, setData: setObsData } = usePricesObsData();
   const { data: cfdbData, setData: setCfdbData } = useCfdbData();
 
   const sectionId = React.useId();
@@ -98,16 +135,18 @@ const ImportSection = () => {
           id={`${sectionId}_obs-data`} 
           text={`${obsData.length} price observations currently loaded.`}
           fileType="csv"
-          buttonLabel="past obs"
-          onSubmit={() => {}}
+          buttonLabel="past observation"
+          onSubmit={data => setObsData(data)}
         />
         <FileForm<CfdbData>
           id={`${sectionId}_cfdb-data`} 
           text={
-            <>CFDB data is{!!Object.keys(cfdbData).length ? '' : <b> not</b>} currently loaded.</>
+            cfdbData.length 
+              ? `CFDB data already loaded (${ppNumber(cfdbData.length)} rows)` 
+              : (<>CFDB data is <b>not</b> currently loaded.</>)
           }
           fileType="json"
-          buttonLabel="cfdb data"
+          buttonLabel="cfdb"
           onSubmit={data => setCfdbData(data)}
         />
       </div>
