@@ -16,6 +16,9 @@ const page2repo: Record<string, { breadcrumbs?: string[], path?: string }> = {
   'compost': {
     path: 'src/views/compost',
     // breadcrumbs: ['compost']
+  },
+  'cfpo': {
+    path: 'src/views/cfpo'
   }
 };
 
