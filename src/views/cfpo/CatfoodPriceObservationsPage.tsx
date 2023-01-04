@@ -1,8 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import FancyInput from './components/FancyInput';
-import PageContextProvider, { usePricesObsData } from './PageContext';
+import PageContextProvider from './PageContext';
+import AddObservationFormSection from './sections/AddObservationFormSection';
 import ImportSection from './sections/ImportSection';
+
+// TODO: for visitors, add in test data so they could
+//       see the visualizations
 
 const Page = styled.div`
   --color-link: var(--oc-blue-1);
@@ -14,6 +17,7 @@ const Page = styled.div`
   --color-input-2: var(--oc-gray-3);
   --color-error: var(--oc-pink-5);
   --color-succes: rgba(var(--oc-gray-9-rgb), 0.5);
+  --font-mono: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace; 
 
   accent-color: var(--color-fg);
 
@@ -107,89 +111,24 @@ const Page = styled.div`
   }
 `;
 
-const AddObservationForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-
-  & label {
-    font-weight: 600;
-  }
-
-  & > div {
-    width: 100%;
-
-    & > span {
-      width: 1.5rem;
-      overflow: hidden;
-    }
-  }
-
-  & .squish {
-    border: 1px dashed var(--color-line);
-    padding: 0.25rem;
-    border-radius: 0.2rem;
-    margin-left: -0.25rem;
-
-    padding-top: calc(0.5rem + 2px);
-
-    @supports selector(:has(> *)) {
-      padding-top: 0.25rem;
-      transition: padding-top 0.1s ease-out;
-
-      &:has(input:not(:placeholder-shown)) {
-        padding-top: calc(0.5rem + 2px);
-      }
-    }
-  }
-`;
-
 interface CatfoodPriceObservationsPageProps {};
 
 const CatfoodPriceObservationsPage = (_: CatfoodPriceObservationsPageProps): React.ReactElement => {
-  const { data: obs } = usePricesObsData();
-
   return (
     <PageContextProvider>
       <Page>
         <h1>catfood price tracker</h1>
-        <section>
-          <h2>Add observations</h2>
-          <div>
-            <AddObservationForm>
-              <FancyInput label="store" />
-              {/* 
-                autofill 
-                show suggestions for other most popular choices
-              */}
-              <FancyInput label="cfdb url" type="url" />
-              <div className="squish">
-                <FancyInput label="price" type="number" />
-                <span>for</span>
-                <FancyInput label="size" type="number" />
-                <select name="weight-unit">
-                  <option value="g">g</option>
-                  <option value="kg">kg</option>
-                  <option value="oz">oz</option>
-                  <option value="lb">lb</option>
-                </select>
-              </div>
-              <FancyInput label="date" type="date" />
-
-              <button type="submit" formMethod='' >Add observation</button>
-            </AddObservationForm>
-          </div>
-        </section>
+        <AddObservationFormSection />
         <section>
           <h2>Visualize data</h2>
           <div>
-            hiii
+            recreate those graphs
           </div>
         </section>
         <section>
           <h2>Export data</h2>
           <div>
-            hiii
+            insert code mirror
           </div>
         </section>
         <ImportSection />

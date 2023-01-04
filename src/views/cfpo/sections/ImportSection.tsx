@@ -11,7 +11,6 @@ const Container = styled.section`
   & .content {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     gap: 1.5rem;
     flex-wrap: wrap;
   
@@ -19,7 +18,6 @@ const Container = styled.section`
       flex: 1;
       display: flex;
       justify-content: center;
-      align-items: center;
       flex-direction: column;
       height: 100%;
       gap: 0.5rem;

@@ -11,31 +11,63 @@ const Container = styled.div`
   & :where(input, textarea) {
     & + label {
       position: absolute;
-      left: 0.55rem;
-
+      padding: 0 0.15rem;
+      left: 0.4rem;
       top: 0.5rem;
       color: var(--color-bg);
+      z-index: 0;
+
       transition: 
         font-size 0.15s ease-in,
         color 0.15s ease-in,
         inset 0.15s ease-in
       ;
+
+      &::before, 
+      &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        z-index: -1;
+        inset: 0;
+      }
+
+      &::before {
+        height: 0.5rem;
+        background: var(--color-fg);
+        opacity: 0;
+        transition-property: opacity;
+        transition-duration: 0.15s;
+        transition-timing-function: ease-in;
+        transition-delay: 0.15s 0;
+      }
+
+      &::after {
+        top: 0.5rem;
+        background: var(--color-input);
+      }
     }
 
+    &:focus,
     &:not(:placeholder-shown) {
       & + label {
         font-size: 0.85rem;
-        top: -0.55rem;
-        background: linear-gradient(var(--color-fg) 0.55rem, var(--color-input) 0.55rem);
+        top: -0.5rem;
+
+        &::before {
+          opacity: 1;
+        }
       }
 
-      &:not(:focus):valid + label {
-        color: var(--color-succes);
+      &:not(:valid) + label {
+        color: var(--color-error);
       }
     }
 
-    &:not(:focus, :valid) + label {
-      color: var(--color-error);
+    &:not(:placeholder-shown) {
+      &:not(:focus):valid + label {
+        color: var(--color-succes);
+      }
     }
   }
 `;
@@ -68,6 +100,7 @@ const FancyInput = ({
           name={label}
           type={type} 
           placeholder=" " 
+          step="any"
           defaultValue={type === 'date' ? new Date().toISOString().split('T')[0] : undefined}
           required={required}
         />
