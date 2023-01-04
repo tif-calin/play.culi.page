@@ -8,6 +8,7 @@ import HomePage from './views/home';
 const CompostPage = React.lazy(() => import('./views/compost'));
 const CashBoardPage = React.lazy(() => import('./views/cashboard'));
 const CatfoodPriceObservationsPage = React.lazy(() => import('./views/cfpo'));
+const TreeWhatPage = React.lazy(() => import('./views/treewhat'));
 
 const page2repo: Record<string, { breadcrumbs?: string[], path?: string }> = {
   'home': {
@@ -21,6 +22,13 @@ const page2repo: Record<string, { breadcrumbs?: string[], path?: string }> = {
     path: 'src/views/cfpo'
   }
 };
+
+const routes = [
+  ['compost', CompostPage],
+  ['cashboard', CashBoardPage],
+  ['cfpo', CatfoodPriceObservationsPage],
+  ['treewhat', TreeWhatPage]
+] as const;
 
 const App = () => {
   const [href, setHref] = React.useState('');
@@ -40,21 +48,15 @@ const App = () => {
       <Layout breadcrumbs={config?.breadcrumbs} path={config?.path}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/compost" element={(
-            <React.Suspense fallback={<>loading...</>}>
-              <CompostPage />
-            </React.Suspense>
-          )} />
-          <Route path="/cashboard" element={(
-            <React.Suspense fallback={<>loading...</>}>
-              <CashBoardPage />
-            </React.Suspense>
-          )} />
-          <Route path="/cfpo" element={(
-            <React.Suspense fallback={<>loading...</>}>
-              <CatfoodPriceObservationsPage />
-            </React.Suspense>
-          )} />
+          
+          {routes.map(([path, Page]) => (
+            <Route key={path} path={`/${path}`} element={(
+              <React.Suspense fallback={<>loading...</>}>
+                <Page />
+              </React.Suspense>
+            )} />
+          ))}
+
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Layout>
