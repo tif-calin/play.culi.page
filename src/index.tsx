@@ -9,6 +9,7 @@ const CompostPage = React.lazy(() => import('./views/compost'));
 const CashBoardPage = React.lazy(() => import('./views/cashboard'));
 const CatfoodPriceObservationsPage = React.lazy(() => import('./views/cfpo'));
 const TreeWhatPage = React.lazy(() => import('./views/treewhat'));
+const SeasonalFruitPage = React.lazy(() => import('./views/seasonalfruit'));
 
 const page2repo: Record<string, { breadcrumbs?: string[], path?: string }> = {
   'home': {
@@ -20,14 +21,15 @@ const page2repo: Record<string, { breadcrumbs?: string[], path?: string }> = {
   },
   'cfpo': {
     path: 'src/views/cfpo'
-  }
+  },
+  'seasonalfruit': { path: 'src/views/seasonalfruit' },
 };
 
 const routes = [
   ['compost', CompostPage],
   ['cashboard', CashBoardPage],
   ['cfpo', CatfoodPriceObservationsPage],
-  ['treewhat', TreeWhatPage]
+  ['seasonalfruit', SeasonalFruitPage],
 ] as const;
 
 const App = () => {
